@@ -169,7 +169,7 @@ const AdminExercises: React.FC = () => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancelar</AlertDialogCancel>
-              <AlertDialogAction onClick={confirmDeleteLevel} className="bg-red-600 hover:bg-red-700">
+              <AlertDialogAction onClick={confirmDeleteExercise} className="bg-red-600 hover:bg-red-700">
                 Excluir
               </AlertDialogAction>
             </AlertDialogFooter>

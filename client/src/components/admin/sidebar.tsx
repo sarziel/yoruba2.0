@@ -1,6 +1,16 @@
 import React from 'react';
 import { Link, useLocation } from 'wouter';
 import { useAuth } from '@/contexts/auth-context';
+import { 
+  Route, 
+  Dumbbell, 
+  FileQuestion, 
+  Users, 
+  Receipt, 
+  Home, 
+  LogOut,
+  LayoutDashboard
+} from 'lucide-react';
 
 interface SidebarProps {
   activeItem?: string;
@@ -21,7 +31,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'trails' }) => {
   return (
     <div className="w-64 bg-neutral-dark h-screen fixed left-0 top-0 text-white p-4 overflow-y-auto">
       <div className="mb-8">
-        <h2 className="text-xl font-heading font-bold mb-1">Painel Admin</h2>
+        <div className="flex items-center mb-1">
+          <LayoutDashboard className="w-5 h-5 mr-2" />
+          <h2 className="text-xl font-heading font-bold">Painel Admin</h2>
+        </div>
         <p className="text-gray-400 text-sm">Yorùbá History Channel</p>
       </div>
       
@@ -30,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'trails' }) => {
           <a className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
             isActive('trails') ? 'bg-primary text-white' : 'text-gray-300 hover:bg-gray-700'
           }`}>
-            <span className="material-icons">route</span>
+            <Route className="w-5 h-5" />
             <span>Trilhas</span>
           </a>
         </Link>
@@ -38,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'trails' }) => {
           <a className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
             isActive('levels') ? 'bg-primary text-white' : 'text-gray-300 hover:bg-gray-700'
           }`}>
-            <span className="material-icons">fitness_center</span>
+            <Dumbbell className="w-5 h-5" />
             <span>Níveis</span>
           </a>
         </Link>
@@ -46,7 +59,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'trails' }) => {
           <a className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
             isActive('exercises') ? 'bg-primary text-white' : 'text-gray-300 hover:bg-gray-700'
           }`}>
-            <span className="material-icons">quiz</span>
+            <FileQuestion className="w-5 h-5" />
             <span>Exercícios</span>
           </a>
         </Link>
@@ -54,7 +67,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'trails' }) => {
           <a className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
             isActive('users') ? 'bg-primary text-white' : 'text-gray-300 hover:bg-gray-700'
           }`}>
-            <span className="material-icons">group</span>
+            <Users className="w-5 h-5" />
             <span>Usuários</span>
           </a>
         </Link>
@@ -62,7 +75,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'trails' }) => {
           <a className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
             isActive('transactions') ? 'bg-primary text-white' : 'text-gray-300 hover:bg-gray-700'
           }`}>
-            <span className="material-icons">receipt_long</span>
+            <Receipt className="w-5 h-5" />
             <span>Transações</span>
           </a>
         </Link>
@@ -71,7 +84,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'trails' }) => {
       <div className="absolute bottom-4 left-0 w-full px-4">
         <Link href="/">
           <a className="flex items-center space-x-3 px-4 py-3 text-gray-300 hover:bg-gray-700 rounded-lg transition-colors">
-            <span className="material-icons">home</span>
+            <Home className="w-5 h-5" />
             <span>Voltar ao App</span>
           </a>
         </Link>
@@ -79,7 +92,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'trails' }) => {
           onClick={handleLogout}
           className="flex items-center space-x-3 px-4 py-3 text-gray-300 hover:bg-gray-700 rounded-lg transition-colors w-full"
         >
-          <span className="material-icons">logout</span>
+          <LogOut className="w-5 h-5" />
           <span>Sair</span>
         </button>
       </div>

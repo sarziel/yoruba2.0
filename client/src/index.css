@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 96.1%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 120 100% 20%; /* Dark green */
+  --primary-foreground: 60 9.1% 97.8%;
+  --primary-light: 120 100% 25%; /* Light green */
+  --secondary: 51 100% 50%; /* Yellow */
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 33 59% 31%; /* Brown */
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 20 14.3% 4.1%;
+  --radius: 0.5rem;
+  
+  /* Level colors */
+  --level-yellow: 51 100% 50%; /* Amarelo */
+  --level-blue: 210 90% 56%; /* Azul */
+  --level-green: 120 61% 50%; /* Verde */
+  --level-gold: 43 74% 49%; /* Dourado */
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 120 100% 20%;
+  --primary-foreground: 60 9.1% 97.8%;
+  --secondary: 51 100% 50%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 33 59% 31%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+}
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Roboto:wght@300;400;500&family=Poppins:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* Path and levels styling */
+.path-connector {
+  height: 4px;
+  background: #DDD;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.path-circle {
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.path-circle:hover {
+  transform: scale(1.1);
+}
+
+.locked-level {
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+/* Animation for hearts */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.heartbeat {
+  animation: heartbeat 1.5s ease infinite;
+}
+
+/* Animation for diamonds */
+.diamond-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.diamond-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(30deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -60%; }
+  100% { left: 160%; }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', sans-serif;
+  }
+}

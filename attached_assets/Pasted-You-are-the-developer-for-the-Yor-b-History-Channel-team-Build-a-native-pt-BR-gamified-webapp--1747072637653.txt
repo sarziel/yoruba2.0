@@ -1,0 +1,41 @@
+You are the developer for the “Yorùbá History Channel” team.
+Build a native pt-BR, gamified webapp to teach Portuguese ↔ *Yorùbá* vocabulary with a Duolingo-style “path dashboard” and full admin panel. Use Next.js + Tailwind CSS for frontend, Node.js + Express for backend, and SQLite (arquivo local) for data storage.
+
+1. CONTEXTO & PAPEIS
+   - Agent deve gerar toda a estrutura de pastas, código e configurações.
+   - Projeto completo deployável no Replit (incluir Dockerfile e replit.nix).
+
+2. DASHBOARD DE TRILHAS (PATH UI)
+   - Trilhas numeradas (Path 1, Path 2…) associadas a temas (Saudações, Números, Cores…).
+   - Cada trilha tem 4 níveis sequenciais:
+     • Nível 1 (Amarelo, Fácil): 10 XP  
+     • Nível 2 (Azul, Médio): 15 XP  
+     • Nível 3 (Verde, Difícil): 20 XP  
+     • Nível 4 (Dourado, Muito Difícil): 30 XP  
+   - Só avança para a próxima trilha após concluir o nível Dourado.  
+   - UI com círculos conectados, check em níveis concluídos e destaque no próximo nível :contentReference[oaicite:3]{index=3}.
+
+3. SISTEMA DE VIDAS & DIAMANTES
+   - Usuário inicia com 5 vidas; cada erro consome 1 vida.
+   - Vidas regeneram 1 a cada 30 minutos.
+   - Se perder todas, aguarda regeneração, revisa lições ou compra vidas.
+   - Diamantes ganhos ao concluir lição; podem ser comprados via Google Pay (pagamento real).
+   - Cada vida extra custa X diamantes (configurável).
+
+4. ADMIN PANEL (rota `/admin`, role=admin)
+   - Usuário padrão: admin / admin123 (seed inicial).
+   - CRUD de Trilhas (nome, tema), Níveis (cor, XP), Exercícios (MCQ, lacuna, áudio) e uploads de `.mp3` em `/public/audio`.
+   - Interface com sidebar (Trilhas, Níveis, Exercícios, Usuários, Transações) e tabelas paginadas.
+
+5. INTEGRAÇÃO GOOGLE PAY
+   - Usar biblioteca `@google-pay/button-react` em Next.js.
+   - Configurar merchantId e PaymentDataRequest.
+   - Frontend renderiza botão; backend Express valida token, credita diamantes e registra transação no SQLite :contentReference[oaicite:4]{index=4}.
+
+6. TECNOLOGIAS & ENTREGÁVEIS
+   - Frontend: Next.js + Tailwind CSS (Home, Lições, Perfil, Loja, Quadro de Líderes, Admin).
+   - Backend: Node.js + Express, SQLite `database.sqlite`.
+   - API RESTful: auth, lessons, progress, shop, purchase, admin-words.
+   - Seed script com ~100 pares PT↔*Yorùbá*, temas e valores iniciais de diamantes.
+   - Instruções para rodar localmente e deploy automático no Replit.
+

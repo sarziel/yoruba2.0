@@ -62,7 +62,7 @@ const Login: React.FC = () => {
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
           <div className="flex justify-center mb-4">
-            <Logo />
+            <Logo size="large" />
           </div>
           <h1 className="text-2xl font-heading font-bold text-primary">Aprendendo Yorùbá</h1>
           <p className="text-muted-foreground">Yorùbá History Channel</p>

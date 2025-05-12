@@ -725,4 +725,11 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+// Import SQLite storage implementation
+import { sqliteStorage } from './db-storage';
+
+// Uncomment the line below to use MemStorage instead of SQLite
+// export const storage = new MemStorage();
+
+// Use SQLite storage
+export const storage = sqliteStorage;

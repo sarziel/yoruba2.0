@@ -18,8 +18,9 @@ app.use(session({
     checkPeriod: 86400000 // prune expired entries every 24h
   }),
   cookie: {
-    secure: false, // set to true if you're using https
-    maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    sameSite: 'lax'
   }
 }));
 

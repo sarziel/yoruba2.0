@@ -5,6 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import Logo from '@/components/logo';
 import { useAuth } from '@/contexts/auth-context';
 import { useUser } from '@/contexts/user-context';
+import { Heart, Diamond, Star } from 'lucide-react';
 
 const Header: React.FC = () => {
   const { user, logout } = useAuth();
@@ -20,7 +21,7 @@ const Header: React.FC = () => {
         <div className="flex items-center space-x-2">
           <Link href="/">
             <a className="flex items-center space-x-2">
-              <Logo />
+              <Logo size="small" />
               <h1 className="text-white font-heading font-bold text-xl hidden sm:inline-block">Aprendendo Yorùbá</h1>
             </a>
           </Link>
@@ -30,19 +31,19 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-4">
             {/* Lives */}
             <div className="flex items-center">
-              <span className="material-icons text-red-500 heartbeat">favorite</span>
+              <Heart className="w-5 h-5 text-red-500 heartbeat fill-current" />
               <span className="text-white font-medium ml-1">{userStats.lives}/{userStats.maxLives}</span>
             </div>
             
             {/* Diamonds */}
             <div className="flex items-center diamond-shine">
-              <span className="material-icons text-secondary">diamond</span>
+              <Diamond className="w-5 h-5 text-secondary fill-current" />
               <span className="text-white font-medium ml-1">{userStats.diamonds}</span>
             </div>
             
             {/* XP Level */}
             <div className="flex items-center bg-primary-light rounded-full px-3 py-1">
-              <span className="material-icons text-secondary text-sm">star</span>
+              <Star className="w-4 h-4 text-secondary fill-current" />
               <span className="text-white text-sm font-medium ml-1">{userStats.xp} XP</span>
             </div>
             

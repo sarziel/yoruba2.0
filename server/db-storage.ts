@@ -21,8 +21,19 @@ export class PostgresStorage implements IStorage {
   }
 
   async createUser(user: schema.InsertUser) {
-    const [newUser] = await db.insert(schema.users).values(user).returning();
+    // Hash password before storing
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    const [newUser] = await db.insert(schema.users).values({
+      ...user,
+      password: hashedPassword
+    }).returning();
     return newUser;
+  }
+
+  async compareUserPassword(username: string, password: string) {
+    const user = await this.getUserByUsername(username);
+    if (!user) return false;
+    return await bcrypt.compare(password, user.password);
   }
 
   async updateUser(id: number, data: Partial<schema.InsertUser>) {
@@ -36,12 +47,6 @@ export class PostgresStorage implements IStorage {
   async deleteUser(id: number) {
     await db.delete(schema.users).where(eq(schema.users.id, id));
     return true;
-  }
-
-  async compareUserPassword(username: string, password: string) {
-    const user = await this.getUserByUsername(username);
-    if (!user) return false;
-    return await bcrypt.compare(password, user.password);
   }
 
   // Trails

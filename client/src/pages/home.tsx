@@ -47,6 +47,20 @@ const Home: React.FC = () => {
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-8 md:mb-0">
+              <h1 className="text-4xl font-heading font-bold mb-6">
+                Aprenda Yorùbá de forma divertida e eficiente
+              </h1>
+              <p className="text-white/80 mb-8">
+                Comece sua jornada de aprendizado agora mesmo com nossa plataforma gamificada.
+              </p>
+              <div className="flex gap-4">
+                <Button 
+                  className="bg-secondary text-primary hover:bg-yellow-400"
+                  onClick={() => navigate('/register')}
+                >
+                  Comece Agora
+                </Button>
+              </div>">
                 <h2 className="text-4xl font-heading font-bold mb-4">Aprenda Yorùbá de forma divertida e eficiente</h2>
                 <p className="text-lg mb-6">Conheça uma das línguas mais importantes da África Ocidental através de exercícios interativos, desafios e um sistema de aprendizado gamificado.</p>
                 <Button 

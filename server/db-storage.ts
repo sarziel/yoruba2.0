@@ -395,22 +395,24 @@ export class SqliteStorage implements IStorage {
 
       // Check progress in current trail
       const hasProgress = trail.levels.some((l: any) => l.completed || l.current);
-      const allCompleted = trail.levels.length > 0 && trail.levels.every((l: any) => l.completed);
       const goldenLevelCompleted = trail.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
 
-      if (allCompleted) {
-        status = 'active'; // All completed, user can review
-      } else if (hasProgress) {
-        status = 'in_progress'; // Some progress
-      } else {
-        // Check if it's the first trail or previous trail is completed
-        if (trail.order === 1) {
-          status = 'active'; // First trail is always active
+      if (trail.order === 1) {
+        // First trail - level 1 is always active, rest follow normal progression
+        if (hasProgress) {
+          status = 'in_progress';
         } else {
-          // Check if previous trail is completed
-          const previousTrail = result.find((t: any) => t.order === trail.order - 1);
-          const previousTrailCompleted = previousTrail?.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
-          if (previousTrail && previousTrailCompleted) {
+          status = 'active';
+        }
+      } else {
+        // For other trails, check if golden level of previous trail is completed
+        const previousTrail = result.find((t: any) => t.order === trail.order - 1);
+        const previousGoldenCompleted = previousTrail?.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
+        
+        if (previousTrail && previousGoldenCompleted) {
+          if (hasProgress) {
+            status = 'in_progress';
+          } else {
             status = 'active';
           }
         }

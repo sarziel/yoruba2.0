@@ -40,8 +40,16 @@ export const login = async (req: Request, res: Response) => {
       // Verify password
       const isPasswordValid = await storage.compareUserPassword(username, password);
     
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Usuário ou senha incorretos' });
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: 'Usuário ou senha incorretos' });
+      }
+      
+      const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET);
+      return res.json({ token });
+    } catch (error) {
+      console.error('Login error:', error);
+      return res.status(500).json({ message: 'Erro interno do servidor' });
+    }
     }
     
     // Set user in session

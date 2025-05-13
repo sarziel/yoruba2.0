@@ -22,19 +22,30 @@ export class PostgresStorage implements IStorage {
   }
 
   async createUser(user: schema.InsertUser) {
-    // Hash password before storing
-    const hashedPassword = await bcrypt.hash(user.password, 10);
-    const [newUser] = await db.insert(schema.users).values({
-      ...user,
-      password: hashedPassword
-    }).returning();
-    return newUser;
+    try {
+      // Hash password before storing
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      const [newUser] = await db.insert(schema.users).values({
+        ...user,
+        password: hashedPassword,
+        role: user.role || 'user'
+      }).returning();
+      return newUser;
+    } catch (error) {
+      console.error('Create user error:', error);
+      throw error;
+    }
   }
 
   async compareUserPassword(username: string, password: string) {
-    const user = await this.getUserByUsername(username);
-    if (!user) return false;
-    return await bcrypt.compare(password, user.password);
+    try {
+      const user = await this.getUserByUsername(username);
+      if (!user) return false;
+      return await bcrypt.compare(password, user.password);
+    } catch (error) {
+      console.error('Compare password error:', error);
+      throw error;
+    }
   }
 
   async updateUser(id: number, data: Partial<schema.InsertUser>) {

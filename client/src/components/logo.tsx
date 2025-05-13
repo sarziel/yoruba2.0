@@ -1,11 +1,12 @@
+
 import React from 'react';
 import yorubaLogoPath from '../assets/yoruba-logo.png';
 
 const Logo: React.FC<{ size?: 'small' | 'medium' | 'large' }> = ({ size = 'medium' }) => {
   const sizeClass = {
-    small: 'w-8 h-8',
-    medium: 'w-12 h-12',
-    large: 'w-20 h-20',
+    small: 'w-10 h-10',
+    medium: 'w-16 h-16',
+    large: 'w-24 h-24',
   }[size];
 
   return (

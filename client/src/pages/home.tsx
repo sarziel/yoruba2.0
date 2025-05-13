@@ -53,22 +53,14 @@ const Home: React.FC = () => {
               <p className="text-white/80 mb-8">
                 Comece sua jornada de aprendizado agora mesmo com nossa plataforma gamificada.
               </p>
-              <div className="flex gap-4">
-                <Button 
-                  className="bg-secondary text-primary hover:bg-yellow-400"
-                  onClick={() => navigate('/register')}
-                >
-                  Comece Agora
-                </Button>
-              </div>
-                <p className="text-lg mb-6">Conheça uma das línguas mais importantes da África Ocidental através de exercícios interativos, desafios e um sistema de aprendizado gamificado.</p>
-                <Button 
-                  size="lg" 
-                  className="bg-secondary text-primary hover:bg-yellow-400 font-bold"
-                  onClick={() => navigate('/register')}
-                >
-                  Comece Agora
-                </Button>
+              <p className="text-lg mb-6">Conheça uma das línguas mais importantes da África Ocidental através de exercícios interativos, desafios e um sistema de aprendizado gamificado.</p>
+              <Button 
+                size="lg" 
+                className="bg-secondary text-primary hover:bg-yellow-400 font-bold"
+                onClick={() => navigate('/register')}
+              >
+                Comece Agora
+              </Button>
               </div>
               <div className="md:w-1/2 flex justify-center items-center">
                 <div className="w-96 h-96 bg-white rounded-full p-8 flex items-center justify-center">

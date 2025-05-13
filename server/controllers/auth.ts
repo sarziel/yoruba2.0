@@ -29,15 +29,16 @@ export const login = async (req: Request, res: Response) => {
     
     const { username, password } = validationResult.data;
     
-    // Check if user exists
-    const user = await storage.getUserByUsername(username);
-    
-    if (!user) {
-      return res.status(401).json({ message: 'Usuário ou senha incorretos' });
-    }
-    
-    // Verify password
-    const isPasswordValid = await storage.compareUserPassword(username, password);
+    try {
+      // Check if user exists
+      const user = await storage.getUserByUsername(username);
+      
+      if (!user) {
+        return res.status(401).json({ message: 'Usuário ou senha incorretos' });
+      }
+      
+      // Verify password
+      const isPasswordValid = await storage.compareUserPassword(username, password);
     
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Usuário ou senha incorretos' });

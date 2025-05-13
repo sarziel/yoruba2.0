@@ -7,17 +7,18 @@ import * as schema from '../shared/schema';
 export class PostgresStorage implements IStorage {
   // Users
   async getUsers() {
-    return await db.select().from(schema.users);
+    const users = await db.select().from(schema.users);
+    return users || [];
   }
 
   async getUser(id: number) {
     const users = await db.select().from(schema.users).where(eq(schema.users.id, id));
-    return users[0];
+    return users?.[0];
   }
 
   async getUserByUsername(username: string) {
     const users = await db.select().from(schema.users).where(eq(schema.users.username, username));
-    return users[0];
+    return users?.[0];
   }
 
   async createUser(user: schema.InsertUser) {

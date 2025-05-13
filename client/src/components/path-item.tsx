@@ -44,10 +44,16 @@ const PathItem: React.FC<PathItemProps> = ({ id, name, theme, status, levels, on
         <div className="flex justify-between relative">
           {levels.map((level) => (
             <div key={level.id} className="flex flex-col items-center">
+              {level.completed && (
+                <div className="flex gap-1 mb-2">
+                  <span className="material-icons text-yellow-400 text-sm">star</span>
+                  <span className="material-icons text-yellow-400 text-sm">star</span>
+                  <span className="material-icons text-yellow-400 text-sm">star</span>
+                </div>
+              )}
               <div 
-                className={`path-circle w-14 h-14 ${LEVEL_COLORS[level.color]} rounded-full flex items-center justify-center mb-2 border-4 border-white shadow-md ${
-                  level.current ? 'animate-pulse' : ''
-                } ${!level.completed && !level.current ? 'locked-level' : ''}`}
+                className={`path-circle w-14 h-14 cursor-pointer transition-all duration-300 ${LEVEL_COLORS[level.color]} rounded-full flex items-center justify-center mb-2 border-4 border-white shadow-md
+                  ${level.completed ? 'opacity-100' : level.current ? 'opacity-100 animate-pulse' : 'opacity-50'}`}
                 onClick={() => {
                   if (level.completed || level.current) {
                     onStartLevel(id, level.id);
@@ -55,13 +61,13 @@ const PathItem: React.FC<PathItemProps> = ({ id, name, theme, status, levels, on
                 }}
               >
                 <span className="material-icons text-white">
-                  {level.completed ? 'check' : level.current ? 'play_arrow' : 'lock'}
+                  {level.completed ? 'check' : 'play_arrow'}
                 </span>
               </div>
-              <span className={`text-sm font-medium ${!level.completed && !level.current ? 'text-gray-400' : 'text-gray-600'}`}>
+              <span className={`text-sm font-medium ${level.completed ? 'text-gray-600' : 'text-gray-400'}`}>
                 Nível {level.id}
               </span>
-              <span className={`text-xs ${!level.completed && !level.current ? 'text-gray-400' : 'text-gray-500'}`}>
+              <span className={`text-xs ${level.completed ? 'text-gray-500' : 'text-gray-400'}`}>
                 {level.xp} XP
               </span>
             </div>
@@ -69,39 +75,12 @@ const PathItem: React.FC<PathItemProps> = ({ id, name, theme, status, levels, on
         </div>
       </div>
       
-      <button 
-        className={`w-full ${
-          status === 'locked' 
-            ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-            : 'bg-primary hover:bg-primary-light text-white transition-colors'
-        } font-bold py-3 px-4 rounded-lg flex items-center justify-center`}
-        onClick={() => {
-          if (status !== 'locked') {
-            const currentLevel = levels.find(level => level.current);
-            if (currentLevel) {
-              onStartLevel(id, currentLevel.id);
-            }
-          }
-        }}
-        disabled={status === 'locked'}
-      >
-        {status === 'locked' ? (
-          <>
-            <span className="material-icons mr-2">lock</span>
-            {`Complete o nível Dourado da Trilha ${id - 1} para Desbloquear`}
-          </>
-        ) : status === 'in_progress' ? (
-          <>
-            <span className="material-icons mr-2">play_arrow</span>
-            Continuar Aprendendo
-          </>
-        ) : (
-          <>
-            <span className="material-icons mr-2">school</span>
-            Começar
-          </>
-        )}
-      </button>
+      {status === 'locked' && (
+        <div className="text-center text-gray-500 mt-4">
+          <span className="material-icons mr-2">lock</span>
+          {`Complete o nível Dourado da Trilha ${id - 1} para Desbloquear`}
+        </div>
+      )}
     </div>
   );
 };

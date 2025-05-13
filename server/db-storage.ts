@@ -393,13 +393,14 @@ export class SqliteStorage implements IStorage {
     for (const [, trail] of trailMap.entries()) {
       let status: 'active' | 'in_progress' | 'locked' = 'locked';
 
-      // Check if all levels including golden are completed
+      // Check progress in current trail
+      const hasProgress = trail.levels.some((l: any) => l.completed || l.current);
       const allCompleted = trail.levels.length > 0 && trail.levels.every((l: any) => l.completed);
       const goldenLevelCompleted = trail.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
 
       if (allCompleted) {
         status = 'active'; // All completed, user can review
-      } else if (anyProgress) {
+      } else if (hasProgress) {
         status = 'in_progress'; // Some progress
       } else {
         // Check if it's the first trail or previous trail is completed
@@ -408,7 +409,8 @@ export class SqliteStorage implements IStorage {
         } else {
           // Check if previous trail is completed
           const previousTrail = result.find((t: any) => t.order === trail.order - 1);
-          if (previousTrail && previousTrail.status === 'active') {
+          const previousTrailCompleted = previousTrail?.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
+          if (previousTrail && previousTrailCompleted) {
             status = 'active';
           }
         }

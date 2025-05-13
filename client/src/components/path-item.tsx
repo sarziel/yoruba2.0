@@ -52,10 +52,10 @@ const PathItem: React.FC<PathItemProps> = ({ id, name, theme, status, levels, on
                 </div>
               )}
               <div 
-                className={`path-circle w-14 h-14 cursor-pointer transition-all duration-300 ${LEVEL_COLORS[level.color]} rounded-full flex items-center justify-center mb-2 border-4 border-white shadow-md
+                className={`path-circle w-14 h-14 ${status !== 'locked' ? 'cursor-pointer' : ''} transition-all duration-300 ${LEVEL_COLORS[level.color]} rounded-full flex items-center justify-center mb-2 border-4 border-white shadow-md
                   ${level.completed ? 'opacity-100' : level.current ? 'opacity-100 animate-pulse' : 'opacity-50'}`}
                 onClick={() => {
-                  if (level.completed || level.current) {
+                  if (status !== 'locked' && (level.completed || level.current)) {
                     onStartLevel(id, level.id);
                   }
                 }}

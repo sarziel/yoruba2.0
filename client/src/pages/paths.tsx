@@ -36,7 +36,7 @@ const Paths: React.FC = () => {
   const [diamondsEarned, setDiamondsEarned] = useState(0);
   
   // Fetch all paths with their levels
-  const { data: paths, isLoading: isPathsLoading } = useQuery({
+  const { data: paths = [], isLoading: isPathsLoading } = useQuery<any[]>({
     queryKey: ['/api/paths'],
   });
   
@@ -170,28 +170,28 @@ const Paths: React.FC = () => {
   };
   
   if (isAuthLoading) {
-    return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
+    return <div className="min-h-screen flex items-center justify-center text-gray-800 dark:text-white font-medium">Carregando...</div>;
   }
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-950">
       <Header />
       <Navigation />
       
       <main className="flex-grow container mx-auto px-4 py-6">
         <Tabs value={currentTab} onValueChange={setCurrentTab}>
-          <TabsList className="mb-8">
-            <TabsTrigger value="paths">Trilhas</TabsTrigger>
-            <TabsTrigger value="practice">Praticar</TabsTrigger>
+          <TabsList className="mb-8 dark:bg-gray-800">
+            <TabsTrigger value="paths" className="font-medium dark:text-white data-[state=active]:bg-primary data-[state=active]:text-white">Trilhas</TabsTrigger>
+            <TabsTrigger value="practice" className="font-medium dark:text-white data-[state=active]:bg-primary data-[state=active]:text-white">Praticar</TabsTrigger>
           </TabsList>
           
           <TabsContent value="paths" className="mb-6">
-            <h2 className="text-2xl font-heading font-bold text-neutral-dark mb-6">Trilhas de Aprendizado</h2>
+            <h2 className="text-2xl font-heading font-bold text-gray-800 dark:text-white mb-6">Trilhas de Aprendizado</h2>
             
             {isPathsLoading ? (
-              <div className="text-center py-8">Carregando trilhas...</div>
+              <div className="text-center py-8 text-gray-700 dark:text-gray-300 font-medium">Carregando trilhas...</div>
             ) : paths && paths.length > 0 ? (
-              <div>
+              <div className="space-y-6">
                 {paths.map((path: any) => (
                   <PathItem
                     key={path.id}
@@ -212,20 +212,20 @@ const Paths: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8">Nenhuma trilha disponível.</div>
+              <div className="text-center py-8 text-gray-700 dark:text-gray-300 font-medium">Nenhuma trilha disponível.</div>
             )}
           </TabsContent>
           
           <TabsContent value="practice">
-            <h2 className="text-2xl font-heading font-bold text-neutral-dark mb-6">Prática Livre</h2>
+            <h2 className="text-2xl font-heading font-bold text-gray-800 dark:text-white mb-6">Prática Livre</h2>
             
-            <div className="bg-white rounded-xl shadow-md p-6">
-              <p className="text-gray-600 mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+              <p className="text-gray-700 dark:text-gray-300 font-medium mb-6">
                 Pratique suas habilidades com exercícios aleatórios de níveis que você já completou.
               </p>
               
               <Button 
-                className="w-full bg-primary hover:bg-primary-light"
+                className="w-full bg-primary hover:bg-primary-light text-white font-bold"
                 disabled={!paths || paths.length === 0}
                 onClick={() => {
                   // Implement practice mode
@@ -272,16 +272,16 @@ const Paths: React.FC = () => {
         diamondsEarned={diamondsEarned}
       />
       
-      <footer className="bg-neutral-dark text-white py-6">
+      <footer className="bg-gray-900 text-white py-6">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p className="text-sm text-gray-400">© 2023 Yorùbá History Channel. Todos os direitos reservados.</p>
+              <p className="text-sm text-gray-300 font-medium">© 2023 Yorùbá History Channel. Todos os direitos reservados.</p>
             </div>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Termos de Uso</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacidade</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Ajuda</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors font-medium">Termos de Uso</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors font-medium">Privacidade</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors font-medium">Ajuda</a>
             </div>
           </div>
         </div>

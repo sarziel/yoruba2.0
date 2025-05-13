@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { storage } from '../storage';
+import jwt from 'jsonwebtoken';
 
 // Extend Express Request type to include user property
 declare global {
@@ -13,26 +14,26 @@ declare global {
 // Authentication middleware
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // In a real app, we would check session or JWT
-    // For now, we'll use a simple user ID in the session
-    const userId = req.session?.userId;
+    const token = req.headers.authorization?.split(' ')[1];
     
-    if (!userId) {
-      return res.status(401).json({ message: 'Não autenticado' });
+    if (!token) {
+      return res.status(401).json({ message: 'Token não fornecido' });
     }
-    
-    const user = await storage.getUser(userId);
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key') as any;
+    const user = await storage.getUser(decoded.id);
     
     if (!user) {
       return res.status(401).json({ message: 'Usuário não encontrado' });
     }
     
-    // Attach the user to the request object for use in other middleware/routes
     req.user = user;
-    
     next();
   } catch (error) {
     console.error('Erro na autenticação:', error);
+    if (error.name === 'JsonWebTokenError') {
+      return res.status(401).json({ message: 'Token inválido' });
+    }
     res.status(500).json({ message: 'Erro no servidor' });
   }
 };

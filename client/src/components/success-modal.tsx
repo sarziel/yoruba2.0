@@ -51,7 +51,7 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
               <span className="font-bold">+{xpEarned} XP</span>
             </div>
             <div className="flex items-center">
-              <span className="material-icons text-secondary mr-1">diamond</span>
+              <span className="material-icons text-secondary mr-1">diamond_outline</span>
               <span className="font-bold">+{diamondsEarned}</span>
             </div>
           </div>

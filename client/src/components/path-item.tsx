@@ -77,7 +77,7 @@ const PathItem: React.FC<PathItemProps> = ({ id, name, theme, status, levels, on
       
       {status === 'locked' && (
         <div className="text-center text-gray-500 mt-4">
-          <span className="material-icons mr-2">lock</span>
+          <span className="material-icons mr-2">lock_outline</span>
           {`Complete o nível Dourado da Trilha ${id - 1} para Desbloquear`}
         </div>
       )}

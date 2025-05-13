@@ -58,14 +58,14 @@ const Login: React.FC = () => {
   };
   
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <div className="min-h-screen flex items-center justify-center bg-background dark:bg-gray-950 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
           <div className="flex justify-center mb-4">
             <Logo size="large" />
           </div>
-          <h1 className="text-2xl font-heading font-bold text-primary">Aprendendo Yorùbá</h1>
-          <p className="text-muted-foreground">Yorùbá History Channel</p>
+          <h1 className="text-2xl font-heading font-bold text-primary dark:text-primary-light">Aprendendo Yorùbá</h1>
+          <p className="text-gray-700 dark:text-gray-300 font-medium">Yorùbá History Channel</p>
         </div>
         
         <Card>
@@ -81,11 +81,15 @@ const Login: React.FC = () => {
                   name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Nome de usuário</FormLabel>
+                      <FormLabel className="font-medium dark:text-white">Nome de usuário</FormLabel>
                       <FormControl>
-                        <Input placeholder="Seu nome de usuário" {...field} />
+                        <Input 
+                          placeholder="Seu nome de usuário" 
+                          className="bg-white dark:bg-gray-800 dark:text-white dark:border-gray-600" 
+                          {...field} 
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="font-medium text-red-600 dark:text-red-400" />
                     </FormItem>
                   )}
                 />
@@ -94,24 +98,29 @@ const Login: React.FC = () => {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Senha</FormLabel>
+                      <FormLabel className="font-medium dark:text-white">Senha</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder="Sua senha" {...field} />
+                        <Input 
+                          type="password" 
+                          placeholder="Sua senha" 
+                          className="bg-white dark:bg-gray-800 dark:text-white dark:border-gray-600" 
+                          {...field} 
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="font-medium text-red-600 dark:text-red-400" />
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full font-bold text-white">
                   Entrar
                 </Button>
               </form>
             </Form>
           </CardContent>
           <CardFooter className="flex flex-col space-y-2">
-            <p className="text-sm text-center text-muted-foreground">
+            <p className="text-sm text-center text-gray-700 dark:text-gray-300 font-medium">
               Não possui uma conta?{' '}
-              <Link to="/register" className="text-primary hover:underline">
+              <Link to="/register" className="text-primary dark:text-primary-light hover:underline font-bold">
                 Cadastre-se
               </Link>
             </p>

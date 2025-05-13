@@ -392,13 +392,11 @@ export class SqliteStorage implements IStorage {
     const result = [];
     for (const [, trail] of trailMap.entries()) {
       let status: 'active' | 'in_progress' | 'locked' = 'locked';
-      
-      // Check if any level is completed or current
-      const anyProgress = trail.levels.some((l: any) => l.completed || l.current);
-      
-      // Check if all levels are completed
+
+      // Check if all levels including golden are completed
       const allCompleted = trail.levels.length > 0 && trail.levels.every((l: any) => l.completed);
-      
+      const goldenLevelCompleted = trail.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
+
       if (allCompleted) {
         status = 'active'; // All completed, user can review
       } else if (anyProgress) {
@@ -415,7 +413,7 @@ export class SqliteStorage implements IStorage {
           }
         }
       }
-      
+
       trail.status = status;
       result.push(trail);
     }

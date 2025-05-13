@@ -85,14 +85,22 @@ const PathItem: React.FC<PathItemProps> = ({ id, name, theme, status, levels, on
         }}
         disabled={status === 'locked'}
       >
-        <span className="material-icons mr-2">
-          {status === 'locked' ? 'lock' : 'play_circle'}
-        </span>
-        {status === 'locked' 
-          ? `Complete a Trilha ${id - 1} para Desbloquear` 
-          : status === 'in_progress' 
-            ? 'Continuar Aprendendo' 
-            : 'Começar'}
+        {status === 'locked' ? (
+          <>
+            <span className="material-icons mr-2">lock</span>
+            {`Complete o nível Dourado da Trilha ${id - 1} para Desbloquear`}
+          </>
+        ) : status === 'in_progress' ? (
+          <>
+            <span className="material-icons mr-2">play_arrow</span>
+            Continuar Aprendendo
+          </>
+        ) : (
+          <>
+            <span className="material-icons mr-2">school</span>
+            Começar
+          </>
+        )}
       </button>
     </div>
   );

@@ -57,9 +57,9 @@ const Home: React.FC = () => {
                   Comece Agora
                 </Button>
               </div>
-              <div className="md:w-1/2 flex justify-center">
-                <div className="w-64 h-64 bg-white rounded-full p-8">
-                  <Logo />
+              <div className="md:w-1/2 flex justify-center items-center">
+                <div className="w-96 h-96 bg-white rounded-full p-8 flex items-center justify-center">
+                  <Logo size="large" />
                 </div>
               </div>
             </div>

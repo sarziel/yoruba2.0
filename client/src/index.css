@@ -16,13 +16,13 @@
   --card-foreground: 20 14.3% 4.1%;
   --border: 20 5.9% 90%;
   --input: 20 5.9% 90%;
-  --primary: 120 100% 20%; /* Dark green */
-  --primary-foreground: 60 9.1% 97.8%;
-  --primary-light: 120 100% 25%; /* Light green */
-  --secondary: 51 100% 50%; /* Yellow */
-  --secondary-foreground: 24 9.8% 10%;
-  --accent: 33 59% 31%; /* Brown */
-  --accent-foreground: 210 40% 98%;
+  --primary: 120 70% 20%; /* Dark green */
+  --primary-foreground: 0 0% 100%; /* White text on primary */
+  --primary-light: 120 60% 35%; /* Light green with better contrast */
+  --secondary: 45 100% 45%; /* Darker Yellow for better text contrast */
+  --secondary-foreground: 0 0% 10%; /* Nearly black text on secondary */
+  --accent: 33 65% 35%; /* Slightly darker Brown */
+  --accent-foreground: 0 0% 100%; /* White text on accent */
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
   --ring: 20 14.3% 4.1%;
@@ -36,24 +36,24 @@
 }
 
 .dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --primary: 120 100% 20%;
-  --primary-foreground: 60 9.1% 97.8%;
-  --secondary: 51 100% 50%;
-  --secondary-foreground: 0 0% 98%;
-  --accent: 33 59% 31%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
+  --background: 240 10% 10%; /* Slightly lighter dark background */
+  --foreground: 0 0% 100%; /* Pure white for better contrast */
+  --muted: 240 3.7% 20%; /* Slightly lighter muted */
+  --muted-foreground: 0 0% 80%; /* Lighter text on muted backgrounds */
+  --popover: 240 10% 12%; /* Slightly lighter popover */
+  --popover-foreground: 0 0% 100%; /* Pure white for popover text */
+  --card: 240 10% 12%; /* Slightly lighter card */
+  --card-foreground: 0 0% 100%; /* Pure white for card text */
+  --border: 240 3.7% 25%; /* Lighter border for better visibility */
+  --input: 240 3.7% 20%; /* Slightly lighter input */
+  --primary: 120 60% 30%; /* Lighter green for dark mode */
+  --primary-foreground: 0 0% 100%; /* Pure white text on primary */
+  --secondary: 45 90% 55%; /* Brighter yellow for dark mode */
+  --secondary-foreground: 0 0% 10%; /* Nearly black text on secondary */
+  --accent: 33 65% 40%; /* Brighter accent for dark mode */
+  --accent-foreground: 0 0% 100%; /* Pure white text on accent */
+  --destructive: 0 70% 45%; /* Brighter destructive for dark mode */
+  --destructive-foreground: 0 0% 100%; /* Pure white text on destructive */
   --ring: 240 4.9% 83.9%;
 }
 

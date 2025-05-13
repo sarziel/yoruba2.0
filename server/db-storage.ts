@@ -388,39 +388,34 @@ export class SqliteStorage implements IStorage {
       });
     }
 
-    // Determine the trail status
-    const result = [];
-    for (const [, trail] of trailMap.entries()) {
-      let status: 'active' | 'in_progress' | 'locked' = 'locked';
+    // Determine trail status
+    let status = 'locked';
 
-      // Check progress in current trail
-      const hasProgress = trail.levels.some((l: any) => l.completed || l.current);
-      const goldenLevelCompleted = trail.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
+    // Check progress in current trail
+    const hasProgress = trail.levels.some((l: any) => l.completed || l.current);
+    const goldenLevelCompleted = trail.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
 
-      if (trail.order === 1) {
-        // First trail - level 1 is always active, rest follow normal progression
-        if (hasProgress) {
-          status = 'in_progress';
-        } else {
-          status = 'active';
-        }
-      } else {
-        // For other trails, check if golden level of previous trail is completed
-        const previousTrail = result.find((t: any) => t.order === trail.order - 1);
-        const previousGoldenCompleted = previousTrail?.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
-        
-        if (previousTrail && previousGoldenCompleted) {
-          if (hasProgress) {
-            status = 'in_progress';
-          } else {
-            status = 'active';
-          }
-        }
+    if (trail.order === 1) {
+      // First trail is always active with first level accessible
+      status = hasProgress ? 'in_progress' : 'active';
+
+      // Make first level accessible
+      if (trail.levels.length > 0 && !hasProgress) {
+        trail.levels[0].current = true;
       }
+    } else {
+      // For other trails, check if golden level of previous trail is completed
+      const previousTrail = result.find((t: any) => t.order === trail.order - 1);
+      const previousGoldenCompleted = previousTrail?.levels.some((l: any) => l.color === 'DOURADO' && l.completed);
 
-      trail.status = status;
-      result.push(trail);
+      if (previousTrail && previousGoldenCompleted) {
+        status = hasProgress ? 'in_progress' : 'active';
+      }
     }
+
+    trail.status = status;
+    result.push(trail);
+  }
 
     return result;
   }

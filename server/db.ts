@@ -4,7 +4,7 @@ import { Pool } from 'pg';
 import * as schema from '../shared/schema';
 
 const pool = new Pool({
-  connectionString: "postgresql://postgres:RFaDADzdaiCUdmPojnLBdUaKLTGEwXGa@nozomi.proxy.rlwy.net:43010/railway"
+  connectionString: "postgresql://postgres:BRIHfNrYSvhUDVayulkxWVMreiRJgCMJ@trolley.proxy.rlwy.net:57071/railway"
 });
 
 export const db = drizzle(pool, { schema });

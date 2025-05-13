@@ -150,8 +150,8 @@ const Register: React.FC = () => {
           <CardFooter className="flex flex-col space-y-2">
             <p className="text-sm text-center text-muted-foreground">
               Já possui uma conta?{' '}
-              <Link href="/login">
-                <a className="text-primary hover:underline">Faça login</a>
+              <Link to="/login" className="text-primary hover:underline">
+                Faça login
               </Link>
             </p>
           </CardFooter>

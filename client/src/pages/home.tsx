@@ -60,8 +60,7 @@ const Home: React.FC = () => {
                 >
                   Comece Agora
                 </Button>
-              </div>">
-                <h2 className="text-4xl font-heading font-bold mb-4">Aprenda Yorùbá de forma divertida e eficiente</h2>
+              </div>
                 <p className="text-lg mb-6">Conheça uma das línguas mais importantes da África Ocidental através de exercícios interativos, desafios e um sistema de aprendizado gamificado.</p>
                 <Button 
                   size="lg" 

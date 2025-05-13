@@ -1,5 +1,6 @@
 import React from 'react';
 import { LEVEL_COLORS, LEVEL_XP } from '@/lib/constants';
+import { Star, CheckCircle, Play, LockKeyhole } from 'lucide-react';
 
 interface Level {
   id: number;
@@ -46,9 +47,9 @@ const PathItem: React.FC<PathItemProps> = ({ id, name, theme, status, levels, on
             <div key={level.id} className="flex flex-col items-center">
               {level.completed && (
                 <div className="flex gap-1 mb-2">
-                  <span className="material-icons text-yellow-400 text-sm">star</span>
-                  <span className="material-icons text-yellow-400 text-sm">star</span>
-                  <span className="material-icons text-yellow-400 text-sm">star</span>
+                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
                 </div>
               )}
               <div 
@@ -60,9 +61,11 @@ const PathItem: React.FC<PathItemProps> = ({ id, name, theme, status, levels, on
                   }
                 }}
               >
-                <span className="material-icons text-white">
-                  {level.completed ? 'check' : 'play_arrow'}
-                </span>
+                {level.completed ? (
+                  <CheckCircle className="w-6 h-6 text-white" />
+                ) : (
+                  <Play className="w-6 h-6 text-white fill-current" />
+                )}
               </div>
               <span className={`text-sm font-medium ${level.completed ? 'text-gray-600' : 'text-gray-400'}`}>
                 Nível {level.id}
